@@ -1,6 +1,12 @@
-import Trie.trie as trie
+import trie
+import pathlib
 
-dictionary = open("english3.txt", encoding="utf8").read().splitlines()
+#Get the directory where the file is located
+path = str(pathlib.Path(__file__).parent.resolve())
+
+#d_path is a variable that contains the location of the dictionaries to load Trie\Dictionaries\english3.txt
+d_path = path + "/Dictionaries/"
+dictionary = open(d_path +"english3.txt", encoding="utf8").read().splitlines()
 
 dictionary = trie.Trie(trie.Trie_cell(),dictionary)
 while True:
@@ -16,8 +22,8 @@ while True:
             break
         else:
             print("Here are all the possibilities")
-            print(lookup)
-            print(dictionary.missing_letter_word(lookup ))
+            print(lookup[0] + " : ")
+            print(dictionary.missing_letter_word(lookup[0]))
     elif choice == "t" or "tangle":
         initial = input("Initial word : \n").replace(" ", "")
         final = input("Final word : \n").replace(" ", "")
